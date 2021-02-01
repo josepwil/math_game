@@ -2,15 +2,13 @@ class Game
   def initialize
     @player_one = Player.new("Player 1")
     @player_two = Player.new("Player 2")
+    @players = [@player_one, @player_two]
     puts "Welcome #{@player_one.name} and #{@player_two.name} to a new game!"
   end
 
   def play
     while @player_one.lives > 0 && @player_two.lives > 0
-      turn(@player_one)
-      winner
-      turn(@player_two)
-      winner
+      @players.each { |player| turn(player) }
     end   
   end
 
@@ -43,5 +41,6 @@ class Game
       puts "NOPE! You are wrong."
       player.lives -= 1
     end
+    winner
   end
 end
