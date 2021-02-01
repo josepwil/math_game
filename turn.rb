@@ -6,7 +6,7 @@ class Turn
   end
 
   def question
-    puts "What is #{@num1} + #{@num2}?"
+    "What is #{@num1} + #{@num2}?"
   end
 
   def answer
