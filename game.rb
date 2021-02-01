@@ -1,15 +1,25 @@
 class Game
+  attr_accessor :current_player
   def initialize
     @player_one = Player.new("Player 1")
     @player_two = Player.new("Player 2")
-    @players = [@player_one, @player_two]
+    @current_player = @player_one
+    
     puts "Welcome #{@player_one.name} and #{@player_two.name} to a new game!"
   end
 
   def play
     while @player_one.lives > 0 && @player_two.lives > 0
-      @players.each { |player| turn(player) }
+      turn(@current_player)
     end   
+  end
+
+  def toggle_current
+   if @current_player == @player_one
+      @current_player = @player_two
+   else
+      @current_player = @player_one
+   end
   end
 
   def score
@@ -41,6 +51,7 @@ class Game
       puts "NOPE! You are wrong."
       player.lives -= 1
     end
+    toggle_current
     winner
   end
 end
